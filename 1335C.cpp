@@ -18,31 +18,17 @@ int main()
 		int m;
 		cin >> m;
 
-		vector<int> a(m);
-		set<int> s;
+		vector<int> a(m+1);
 		for(int i=0;i<m;i++)
 		{
-			cin >> a[i];
-			s.insert(a[i]);
+			int x;
+			cin >> x;
+			a[x]++;
 		}
-
 		sort(a);
-		int cnt=0,si=s.size();
-		for(int i=0;i<m;i++)
-		{
-			int k=0,j=i;
-			while(a[i] == a[j] and j<m)
-			{
-				k++;
-				j++;
-			}
-			i+=j+1;
-			cnt = max(cnt,k);
-		}
-		if(si>=cnt)
-			si--;
-		
-		cout << min(si,cnt) << endl;
+		int cnt = a[m];
+		int si = m+1 - count(a.begin(),a.end(),0);
+		cout << max(min(si-1,cnt),min(si,cnt-1)) << endl;
 	}
 	return 0;
 }
