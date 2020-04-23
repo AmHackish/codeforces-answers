@@ -2,7 +2,7 @@
 using namespace std;
 #define lli long long int
 
-vector<int> v(1007);
+vector<int> v[1007];
 vector<int> re(1007);
 int f(int a)
 {
@@ -19,25 +19,27 @@ int main()
 		int n;
 		cin >> n;
 
-		vector<int> a(n);
-		for(int i=0;i<n;i++)
+		for(int i=1;i<=1000;i++)
+			v[i].clear();
+		for(int i=1;i<=n;i++)
 		{
-			cin >> a[i];
-			v[f(a[i])].push_back(i);
+			int x;
+			cin >> x;
+			v[f(x)].push_back(i);
 		}
 		int cnt=0;
 		for(int i=1;i<=1000;i++)
 		{
-			if(ans[i].size())
+			if(v[i].size())
 			{
 				cnt++;
-				for(auto x:ans[i])
+				for(auto x:v[i])
 					re[x] = cnt;
 			}
 		}
 		cout << cnt << endl;
-		for(int i=0;i<=n;i++)
-			cout << res[i] << " ";
+		for(int i=1;i<=n;i++)
+			cout << re[i] << " ";
 		cout << endl;
 	}
 	return 0;
